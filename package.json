@@ -1,0 +1,19 @@
+{
+  "name": "scrape-metadata",
+  "version": "1.0.0",
+  "description": "HTML metadata scraper",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bevacqua/scrape-metadata.git"
+  },
+  "author": "Nicolás Bevacqua <nico@ponyfoo.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "file-type": "4.1.0",
+    "htmlparser2": "3.9.2",
+    "request": "2.81.0"
+  }
+}
