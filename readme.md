@@ -10,7 +10,7 @@ npm install --save scrape-metadata
 
 # usage
 
-```
+```js
 const scrape = require('scrape-metadata')
 scrape('https://google.com', (err, meta) => {
   console.log(meta)
