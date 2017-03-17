@@ -3,7 +3,6 @@
 const url = require(`url`)
 const request = require(`request`)
 const htmlparser = require(`htmlparser2`)
-const fileType = require(`file-type`)
 const rhttp = /^https?:\/\//i
 const whitelist = /charset|author|host|description|twitter:|og:|theme-color/im
 
@@ -22,12 +21,6 @@ function extract (endpoint, options, done) {
   function gotResponse (err, res, body) {
     if (err) {
       done(err)
-      return
-    }
-
-    const file = fileType(body)
-    if (file) {
-      payload.file = file
       return
     }
 

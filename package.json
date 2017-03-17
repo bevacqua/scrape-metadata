@@ -12,7 +12,6 @@
     "test": "node test.js"
   },
   "dependencies": {
-    "file-type": "4.1.0",
     "htmlparser2": "3.9.2",
     "request": "2.81.0"
   }
