@@ -12,6 +12,10 @@ scrape(`http://www.w3.org/TR/html4/index/list.html`, (err, meta) =>
   console.log(err, meta)
 )
 
-scrape(`https://medium.freecodecamp.com/functional-setstate-is-the-future-of-react-374f30401b6b#.ih2sesp1k`, (err, meta) =>
+scrape(`https://medium.freecodecamp.com/functional-setstate-is-the-future-of-react-374f30401b6b`, (err, meta) =>
+  console.log(err, meta)
+)
+
+scrape(`https://ponyfoo.com`, (err, meta) =>
   console.log(err, meta)
 )

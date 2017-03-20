@@ -90,7 +90,7 @@ function parseMeta (attr) {
 }
 
 function camelCase (name) {
-  const rseparator = /(?:\:|_)(\w)/g
+  const rseparator = /(?:[:_-])(\w)/g
   return name.replace(rseparator,
     (all, letter) => letter.toUpperCase()
   )
