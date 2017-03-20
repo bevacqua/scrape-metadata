@@ -4,7 +4,7 @@ const url = require(`url`)
 const request = require(`request`)
 const htmlparser = require(`htmlparser2`)
 const rhttp = /^https?:\/\//i
-const whitelist = /charset|author|host|description|twitter:|og:|theme-color/im
+const whitelist = /(^(charset|author|host|description|theme-color)$)|(^(twitter:|og:))/im
 
 function extract (endpoint, options, done) {
   if (!done) {
@@ -12,9 +12,6 @@ function extract (endpoint, options, done) {
     options = {}
   }
   options.url = endpoint
-
-  const payload = { title: `` }
-  const parser = createParser(options.url, payload)
 
   request(options, gotResponse)
 
@@ -24,23 +21,31 @@ function extract (endpoint, options, done) {
       return
     }
 
-    const rdoublespaces = /\s{2,}|\n/img
-
-    parser.write(body)
-    payload.title = (payload.title || ``).replace(rdoublespaces, ``)
-    payload.images = Array.from(payload.images || [])
-
-    done(null, payload)
+    done(null, parse(body, { endpoint }))
   }
 }
 
-function createParser (base, payload) {
+function parse (body, { endpoint }) {
+  const rdoublespaces = /\s{2,}|\n/img
+  const events = { onopentag, ontext, onclosetag }
+  const parserConfig = { decodeEntities: true }
+  const parser = new htmlparser.Parser(events, parserConfig)
+  const ogImages = []
+  const payload = {}
   let inHead = false
   let tagName = null
-  const events = { onopentag, ontext, onclosetag }
-  const options = { decodeEntities: true }
-  const parser = new htmlparser.Parser(events, options)
-  return parser
+
+  parser.write(body)
+
+  payload.title = (payload.title || ``).replace(rdoublespaces, ``)
+  payload.images = (
+    ogImages.length
+      ? ogImages
+      : Array.from(payload.images || [])
+  )
+    .map(src => url.resolve(endpoint, src))
+
+  return payload
 
   function onopentag (name, attrs) {
     tagName = name
@@ -52,6 +57,10 @@ function createParser (base, payload) {
       if (meta) {
         const [key, value] = meta
         payload[key] = value
+
+        if (key === `ogImage`) {
+          ogImages.push(value)
+        }
       }
     }
     if (name === `img`) {
@@ -60,14 +69,14 @@ function createParser (base, payload) {
         if (!payload.images) {
           payload.images = new Set()
         }
-        payload.images.add(url.resolve(base, src))
+        payload.images.add(src)
       }
     }
   }
 
   function ontext (text) {
     if (inHead && tagName === `title`) {
-      payload.title += text
+      payload.title = (payload.title || ``) + text
     }
   }
 

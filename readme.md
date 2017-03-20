@@ -19,12 +19,12 @@ scrape('https://ponyfoo.com', (err, meta) => {
 
 # example response
 
-Here's what an example response might look like in a website heavily decorated with metadata.
+Here's what an example response might look like in a website heavily decorated with metadata. Note that by default `images` will contain every image on an HTML page. When `og:image` tags are present, the `images` list will be replaced with their contents.
 
 ```json
 {
-  "title": "Pony Foo — JavaScript consulting, modularity, front-end architecture, performance, and more. Authored by Nicolás Bevacqua",
   "charset": "utf-8",
+  "title": "Pony Foo — JavaScript consulting, modularity, front-end architecture, performance, and more. Authored by Nicolás Bevacqua",
   "themeColor": "#e92c6c",
   "twitterWidgetsLinkColor": "#e92c6c",
   "author": "Nicolás Bevacqua <nico@ponyfoo.com>",
@@ -43,7 +43,6 @@ Here's what an example response might look like in a website heavily decorated w
   "images": [
     "https://i.imgur.com/GKoh78o.jpg",
     "https://i.imgur.com/TjJ7TAS.jpg",
-    "https://twemoji.maxcdn.com/2/72x72/1f510.png",
     "https://i.imgur.com/wWiTEO4.jpg",
     "https://lh5.googleusercontent.com/FekVGkoPt2gq8VzN5XLarr93psyFuI-_O0bUwJWZVLh9gzQiOJaXavUPuroyMjoPFRfmveefETIbMADUX3R_5Ij7_HIH7xxXj70L6M0CTbVGEjbVSkbYX7RwabOuESpPEFyJY-Br",
     "https://i.imgur.com/J2MHHUM.jpg",
@@ -52,9 +51,7 @@ Here's what an example response might look like in a website heavily decorated w
     "https://i.imgur.com/QnzjRhT.png",
     "https://i.imgur.com/ZpyYMV1.png",
     "https://i.imgur.com/fFN8WA5.jpg",
-    "https://twemoji.maxcdn.com/2/72x72/1f4da.png",
     "https://i.imgur.com/saRiGkb.png",
-    "https://twemoji.maxcdn.com/2/72x72/1f680.png",
     "https://i.imgur.com/2vRXFlf.png",
     "https://i.imgur.com/E0TZnJW.jpg",
     "https://i.imgur.com/wmv3GRL.jpg",
@@ -70,10 +67,8 @@ Here's what an example response might look like in a website heavily decorated w
     "https://i.imgur.com/2nevyPE.png",
     "https://i.imgur.com/lrg9mQr.jpg",
     "https://i.imgur.com/6lNsZrT.jpg",
-    "https://twemoji.maxcdn.com/2/72x72/1f389.png",
     "https://i.imgur.com/Hsx9pWl.jpg",
     "https://i.imgur.com/N2zPQ2q.jpg",
-    "https://twemoji.maxcdn.com/2/72x72/1f575.png",
     "https://i.imgur.com/yKJ7sXD.png",
     "https://i.imgur.com/NydsbSG.png",
     "https://i.imgur.com/MW4oAaz.jpg",
@@ -84,7 +79,8 @@ Here's what an example response might look like in a website heavily decorated w
     "https://i.imgur.com/gJJdfyS.jpg",
     "https://i.imgur.com/4obNc9t.jpg",
     "https://i.imgur.com/ArxlARC.png",
-    "https://i.imgur.com/o8Iibqx.jpg"
+    "https://i.imgur.com/o8Iibqx.jpg",
+    "https://ponyfoo.com/img/banners/branded.9d42b711.png"
   ]
 }
 ```
