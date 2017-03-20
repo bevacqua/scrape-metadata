@@ -25,8 +25,8 @@ Here's what an example response might look like in a website heavily decorated w
 {
   "title": "Pony Foo — JavaScript consulting, modularity, front-end architecture, performance, and more. Authored by Nicolás Bevacqua",
   "charset": "utf-8",
-  "theme-color": "#e92c6c",
-  "twitterWidgetsLink-color": "#e92c6c",
+  "themeColor": "#e92c6c",
+  "twitterWidgetsLinkColor": "#e92c6c",
   "author": "Nicolás Bevacqua <nico@ponyfoo.com>",
   "description": "Pony Foo is a technical blog maintained by Nicolás Bevacqua, where he shares his thoughts on JavaScript and the web. Nico likes writing, public speaking, and open-source.",
   "ogSiteName": "Pony Foo",
